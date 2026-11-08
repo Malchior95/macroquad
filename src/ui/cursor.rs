@@ -25,6 +25,8 @@ impl Scroll {
     }
 
     pub fn update(&mut self) {
+        self.rect.x = self.rect.x.round();
+        self.rect.y = self.rect.y.round();
         self.rect.y =
             self.rect.y.max(self.inner_rect_previous_frame.y).min(
                 self.inner_rect_previous_frame.h - self.rect.h + self.inner_rect_previous_frame.y,
