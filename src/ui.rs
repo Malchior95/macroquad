@@ -609,7 +609,7 @@ impl InputHandler for Ui {
             self.windows
                 .get_mut(id)
                 .unwrap()
-                .set_position(Vec2::new(position.x - orig.x, position.y - orig.y));
+                .set_position(Vec2::new(position.x - orig.x, position.y - orig.y).round());
         }
     }
 
