@@ -139,17 +139,19 @@ impl AnimatedSprite {
     /// Update current frame
     ///
     /// Switches to the next frame every `1. / current_animation.fps` seconds
-    pub fn update(&mut self) {
+    pub fn update(&mut self) -> bool {
         let animation = &self.animations[self.current_animation];
 
         if self.playing {
             self.time += get_frame_time();
             if self.time > 1. / animation.fps as f32 {
                 self.frame += 1;
+                self.frame %= animation.frames;
                 self.time = 0.0;
+                return true;
             }
         }
-        self.frame %= animation.frames;
+        false
     }
 
     /// Get current frame
